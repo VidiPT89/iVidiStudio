@@ -1,59 +1,37 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
-import { useEffect, useMemo, useState } from "react";
-import { building, byPriority, STATES, type Ticket } from "@/lib/building";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { useState } from "react";
 import { FLOORS } from "@/lib/floors";
 import { useLang, useMessages } from "@/lib/preferences";
-import { useIntroDone } from "./intro";
+import { byPriority, STATES, type SimTicket } from "@/lib/simulation";
+import { useLive } from "./live";
 import { STATE_COLOR, TicketCard, TicketModal, useStateLabels } from "./ticket-ui";
 
 const ROW_H = 60;
-const AUTO_TOUR_MS = 2800;
-
-const activeCount = (slug: string) => {
-  const counts = building.summary.byFloor[slug];
-  return counts ? counts.entrada + counts["em-curso"] + counts["aguarda-aprovacao"] : 0;
-};
 
 export function BuildingSection() {
   const t = useMessages();
   const [lang] = useLang();
-  const ready = useIntroDone();
   const reduce = useReducedMotion();
   const stateLabel = useStateLabels();
+  const sim = useLive();
 
-  // Until the visitor picks a floor, the elevator tours the floors that have work.
-  const tour = useMemo(() => {
-    const busy = FLOORS.map((f, i) => (activeCount(f.slug) > 0 ? i : -1)).filter((i) => i >= 0);
-    return busy.length ? busy : [0];
-  }, []);
-  const [tourStep, setTourStep] = useState(0);
+  // The elevator rides to wherever the latest step happened, unless the visitor picks a floor.
+  const liveIndex = Math.max(0, FLOORS.findIndex((f) => f.slug === sim.liveFloor));
   const [picked, setPicked] = useState<number | null>(null);
-  const [paused, setPaused] = useState(false);
-  const [open, setOpen] = useState<Ticket | null>(null);
-  const selected = picked ?? tour[tourStep % tour.length];
-
-  useEffect(() => {
-    if (!ready || picked !== null || paused || reduce || tour.length < 2) return;
-    const id = setInterval(() => setTourStep((s) => s + 1), AUTO_TOUR_MS);
-    return () => clearInterval(id);
-  }, [ready, picked, paused, reduce, tour.length]);
+  const [open, setOpen] = useState<SimTicket | null>(null);
+  const selected = picked ?? liveIndex;
 
   const floor = FLOORS[selected];
-  const counts = building.summary.byFloor[floor.slug];
-  const floorTickets = building.tickets
-    .filter((tk) => tk.floor === floor.slug && tk.state !== "concluido")
-    .sort(byPriority);
+  const activeOn = (slug: string) => {
+    const c = sim.byFloor[slug];
+    return c ? c.entrada + c["em-curso"] + c["aguarda-aprovacao"] : 0;
+  };
+  const floorTickets = sim.tickets.filter((tk) => tk.floor === floor.slug && tk.state !== "concluido").sort(byPriority);
 
   return (
-    <section
-      id="edificio"
-      className="mx-auto max-w-7xl px-4 py-16 sm:px-6"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocus={() => setPaused(true)}
-    >
+    <section id="edificio" className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
       <SectionTitle title={t.buildingTitle} body={t.buildingBody} />
 
       <div className="mt-10 grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-[minmax(0,1fr)_400px]">
@@ -68,7 +46,10 @@ export function BuildingSection() {
           <Roof />
           <div className="relative flex">
             {/* elevator shaft */}
-            <div className="relative mr-3 w-10 shrink-0 rounded-lg border border-line bg-bg sm:mr-4" style={{ height: ROW_H * FLOORS.length }}>
+            <div
+              className="relative mr-3 w-10 shrink-0 rounded-lg border border-line bg-bg sm:mr-4"
+              style={{ height: ROW_H * FLOORS.length }}
+            >
               <div className="absolute inset-y-2 left-1/2 w-px -translate-x-1/2 bg-line" />
               <motion.div
                 className="bg-brand absolute left-1 right-1 rounded-md shadow-[0_0_24px_var(--glow)]"
@@ -84,8 +65,7 @@ export function BuildingSection() {
             {/* floors */}
             <ul className="min-w-0 flex-1">
               {FLOORS.map((f, i) => {
-                const c = building.summary.byFloor[f.slug];
-                const active = activeCount(f.slug);
+                const c = sim.byFloor[f.slug];
                 const isSel = i === selected;
                 return (
                   <li
@@ -114,18 +94,20 @@ export function BuildingSection() {
                       )}
                       <span className="w-[4.5rem] shrink-0 font-mono text-xs text-muted">{f.label[lang]}</span>
                       <span className="min-w-0 flex-1">
-                        <span className={`block truncate text-sm font-medium transition-colors ${isSel ? "text-orange" : "group-hover:text-fg"}`}>
+                        <span
+                          className={`block truncate text-sm font-medium transition-colors ${isSel ? "text-orange" : "group-hover:text-fg"}`}
+                        >
                           {f.name[lang]}
                         </span>
                         <span className="hidden truncate text-xs text-muted sm:block">{f.mission[lang]}</span>
                       </span>
-                      <Windows lit={active} />
+                      <Windows lit={activeOn(f.slug)} />
                       <span className="flex shrink-0 items-center gap-1">
                         {STATES.map((s) => (
                           <span
                             key={s}
                             title={`${stateLabel[s]}: ${c?.[s] ?? 0}`}
-                            className="h-2 w-2 rounded-full transition-opacity"
+                            className="h-2 w-2 rounded-full transition-opacity duration-500"
                             style={{ background: STATE_COLOR[s], opacity: c?.[s] ? 1 : 0.18 }}
                           />
                         ))}
@@ -156,8 +138,21 @@ export function BuildingSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
           >
-            <p className="font-mono text-xs uppercase tracking-widest text-amber">{floor.label[lang]}</p>
-            <h3 className="mt-1 text-2xl font-semibold tracking-tight">{floor.name[lang]}</h3>
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <p className="font-mono text-xs uppercase tracking-widest text-amber">{floor.label[lang]}</p>
+                <h3 className="mt-1 text-2xl font-semibold tracking-tight">{floor.name[lang]}</h3>
+              </div>
+              {picked !== null && (
+                <button
+                  type="button"
+                  onClick={() => setPicked(null)}
+                  className="focus-ring shrink-0 rounded-full border border-line px-3 py-1 text-xs text-muted transition-colors hover:border-orange hover:text-orange"
+                >
+                  {t.followElevator}
+                </button>
+              )}
+            </div>
 
             <Label>{t.floorMission}</Label>
             <p className="text-sm leading-relaxed text-fg/85">{floor.mission[lang]}</p>
@@ -186,15 +181,16 @@ export function BuildingSection() {
             <Label>
               {t.floorWork}
               <span className="ml-2 font-mono normal-case tracking-normal text-muted/80">
-                {t.floorTickets(counts ? STATES.reduce((n, s) => n + counts[s], 0) : 0)} ·{" "}
-                {t.floorRecords(building.records[floor.slug] ?? 0)}
+                {t.floorTickets(floorTickets.length)}
               </span>
             </Label>
             {floorTickets.length ? (
               <div className="space-y-2">
-                {floorTickets.slice(0, 4).map((tk) => (
-                  <TicketCard key={tk.id} ticket={tk} onOpen={setOpen} />
-                ))}
+                <AnimatePresence initial={false}>
+                  {floorTickets.slice(0, 4).map((tk) => (
+                    <TicketCard key={tk.id} ticket={tk} onOpen={setOpen} />
+                  ))}
+                </AnimatePresence>
               </div>
             ) : (
               <p className="text-sm text-muted">{t.floorNoWork}</p>

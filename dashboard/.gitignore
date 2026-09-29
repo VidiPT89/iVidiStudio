@@ -45,5 +45,3 @@ next-env.d.ts
 /AGENTS.md
 /CLAUDE.md
 
-# snapshot gerado a partir do edifício (npm run snapshot)
-/src/data/building.json

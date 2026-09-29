@@ -9,7 +9,7 @@ const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"]
 
 export const metadata: Metadata = {
   title: "iVidi Studio HQ",
-  description: "The whole iVidi Studio company in one building: every floor a team, every request a ticket riding the elevator.",
+  description: "Live demo: iVidi Studio running on its own as a twelve-floor building — every floor a team, every request riding the elevator, every real-impact decision waiting for a human.",
   authors: [{ name: "David Arsénio Martins", url: "https://ividi.dev" }],
   creator: "David Arsénio Martins",
 };

@@ -61,12 +61,6 @@ export const CloseIcon = (p: IconProps) => (
   </svg>
 );
 
-export const ArrowUpRightIcon = (p: IconProps) => (
-  <svg {...base(p)}>
-    <path d="M7 17 17 7M8 7h9v9" />
-  </svg>
-);
-
 export const HandIcon = (p: IconProps) => (
   <svg {...base(p)}>
     <path d="M18 11V6a2 2 0 0 0-4 0v5M14 10V4a2 2 0 0 0-4 0v6M10 10.5V6a2 2 0 0 0-4 0v8" />

@@ -1,11 +1,12 @@
 "use client";
 
-import { building } from "@/lib/building";
 import { useMessages } from "@/lib/preferences";
 import { BuildingMark, GitHubIcon, GlobeIcon } from "./icons";
+import { useLive } from "./live";
 
 export function Footer() {
   const t = useMessages();
+  const { now } = useLive();
   return (
     <footer className="mt-10 border-t border-line">
       <div className="bg-brand h-px opacity-60" />
@@ -36,7 +37,7 @@ export function Footer() {
           </a>
         </div>
         <p className="text-xs text-muted/80">
-          © {building.generatedAt.slice(0, 4)} iVidi Studio. {t.footerRights}
+          ©{now ? ` ${new Date(now).getFullYear()}` : ""} iVidi Studio. {t.footerRights}
         </p>
       </div>
     </footer>
