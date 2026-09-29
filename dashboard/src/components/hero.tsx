@@ -3,19 +3,19 @@
 import { animate, motion, useInView, useReducedMotion } from "motion/react";
 import { useEffect, useRef } from "react";
 import { building } from "@/lib/building";
+import { useDayPeriod } from "@/lib/clock";
 import { useMessages } from "@/lib/preferences";
 import { useIntroDone } from "./intro";
-
-function greeting(t: ReturnType<typeof useMessages>) {
-  const h = new Date().getHours();
-  if (h >= 5 && h < 13) return t.greetMorning;
-  if (h >= 13 && h < 20) return t.greetAfternoon;
-  return t.greetEvening;
-}
 
 export function Hero() {
   const t = useMessages();
   const ready = useIntroDone();
+  const period = useDayPeriod();
+  const greeting = {
+    morning: t.greetMorning,
+    afternoon: t.greetAfternoon,
+    evening: t.greetEvening,
+  }[period ?? "morning"];
   const show = (y: number) => (ready ? { opacity: 1, y: 0 } : { opacity: 0, y });
   const { byState, total } = building.summary;
   const stats = [
@@ -55,7 +55,7 @@ export function Hero() {
           animate={show(18)}
           transition={{ duration: 0.7, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
         >
-          <span suppressHydrationWarning>{greeting(t)}</span>
+          <span className={`transition-opacity duration-300 ${period ? "opacity-100" : "opacity-0"}`}>{greeting}</span>
           <br />
           <span className="text-brand">{t.heroTitleAccent}</span>
         </motion.h1>

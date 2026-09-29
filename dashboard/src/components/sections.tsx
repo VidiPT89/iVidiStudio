@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 import { building, byPriority, daysBetween, STATES, type Ticket } from "@/lib/building";
+import { useToday } from "@/lib/clock";
 import { useMessages } from "@/lib/preferences";
 import { SectionTitle } from "./building";
 import { ArrowUpRightIcon, HandIcon } from "./icons";
@@ -56,8 +57,7 @@ export function Approvals() {
   const floorName = useFloorName();
   const [open, setOpen] = useState<Ticket | null>(null);
   const pending = building.tickets.filter((tk) => tk.state === "aguarda-aprovacao").sort(byPriority);
-  // Ages are measured against the data snapshot, so server and browser agree.
-  const asOf = building.generatedAt.slice(0, 10);
+  const today = useToday();
 
   return (
     <section id="aprovacoes" className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
@@ -67,7 +67,7 @@ export function Approvals() {
           <p className="card p-8 text-center text-muted md:col-span-2">{t.approvalsEmpty}</p>
         )}
         {pending.map((tk, i) => {
-          const days = daysBetween(tk.updated, asOf);
+          const days = daysBetween(tk.updated, today);
           return (
             <motion.button
               key={tk.id}
