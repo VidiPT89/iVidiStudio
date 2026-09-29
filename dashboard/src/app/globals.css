@@ -89,6 +89,10 @@ body {
   mask-image: radial-gradient(ellipse at 50% 0%, black 30%, transparent 75%);
 }
 
+:root[data-intro="skip"] .splash {
+  display: none;
+}
+
 .card {
   background: var(--surface);
   border: 1px solid var(--line);

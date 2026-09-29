@@ -3,6 +3,7 @@
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useCallback, useEffect, useState } from "react";
 import { useMessages } from "@/lib/preferences";
+import { INTRO_KEY } from "@/lib/storage-keys";
 import { GitHubIcon, GlobeIcon } from "./icons";
 
 const FLOORS = 12;
@@ -14,13 +15,20 @@ export function Splash({ onDone }: { onDone: () => void }) {
   const reduce = useReducedMotion();
   const [visible, setVisible] = useState(true);
   const close = useCallback(() => {
+    try {
+      sessionStorage.setItem(INTRO_KEY, "1");
+    } catch {
+      /* storage blocked: the intro simply plays again next time */
+    }
     setVisible(false);
     onDone();
   }, [onDone]);
 
   useEffect(() => {
     if (!visible) return;
-    const timer = setTimeout(close, reduce ? 1200 : DURATION_MS);
+    // Already seen in this session: the no-flash script hid it before first paint.
+    const seen = document.documentElement.dataset.intro === "skip";
+    const timer = setTimeout(close, seen ? 0 : reduce ? 1200 : DURATION_MS);
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape" || e.key === "Enter" || e.key === " ") close();
     };
@@ -41,7 +49,7 @@ export function Splash({ onDone }: { onDone: () => void }) {
           role="dialog"
           aria-label="iVidi Studio HQ"
           onClick={close}
-          className="fixed inset-0 z-[100] flex cursor-pointer flex-col items-center justify-center overflow-hidden bg-bg px-6"
+          className="splash fixed inset-0 z-[100] flex cursor-pointer flex-col items-center justify-center overflow-hidden bg-bg px-6"
           exit={{ opacity: 0, scale: 1.04, filter: "blur(8px)" }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
