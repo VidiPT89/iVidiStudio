@@ -1,8 +1,9 @@
-name: Triagem (de hora a hora)
+name: Triagem (4× por dia + a cada pedido novo)
 
 on:
+  # Repositório privado: 2000 minutos grátis por mês. 08h, 12h, 16h e 20h em Lisboa (±1 h com a hora de verão).
   schedule:
-    - cron: "0 * * * *"
+    - cron: "0 7,11,15,19 * * *"
   push:
     branches: [main]
     paths: ["elevador/entrada/**"]

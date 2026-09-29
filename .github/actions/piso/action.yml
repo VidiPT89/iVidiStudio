@@ -10,6 +10,16 @@ inputs:
 runs:
   using: composite
   steps:
+    - name: Token configurado?
+      shell: bash
+      env:
+        TOKEN: ${{ inputs.token }}
+      run: |
+        if [ -z "$TOKEN" ]; then
+          echo "::error::Falta o secret CLAUDE_CODE_OAUTH_TOKEN (corre 'claude setup-token' e guarda-o em Settings → Secrets → Actions)."
+          exit 1
+        fi
+
     - uses: actions/setup-node@v4
       with:
         node-version: 22

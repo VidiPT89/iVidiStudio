@@ -3,7 +3,7 @@ name: CI (painel)
 on:
   push:
     branches: [main]
-    paths: ["dashboard/**", "elevador/**", "pisos/**", ".github/workflows/ci.yml"]
+    paths: ["dashboard/**", ".claude/hooks/**", ".github/workflows/ci.yml"]
   pull_request:
 
 jobs:
