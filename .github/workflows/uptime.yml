@@ -5,17 +5,12 @@ on:
     - cron: "30 6 * * *"
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 jobs:
   uptime:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
       - name: Verificar sites
-        id: check
         run: |
           falhas=""
           for url in https://ividi.dev https://portal.ividi.dev; do
@@ -23,12 +18,5 @@ jobs:
             echo "$url → ${code:-000}"
             if [ -z "$code" ] || [ "$code" = "000" ] || [ "$code" -ge 500 ]; then falhas="$falhas $url(${code:-000})"; fi
           done
-          echo "falhas=${falhas# }" >> "$GITHUB_OUTPUT"
-      - name: Abrir ticket P0 na entrada
-        if: steps.check.outputs.falhas != ''
-        run: |
-          .github/scripts/ticket-uptime.sh "${{ steps.check.outputs.falhas }}"
-          git add elevador/entrada
-          git -c user.name="David Arsénio Martins" -c user.email="210453312+VidiPT89@users.noreply.github.com" \
-            commit -q -m "fix(infraestrutura): site em baixo"
-          git push
+          # A failed run makes GitHub email the repository owner: that is the alert.
+          if [ -n "$falhas" ]; then echo "::error::Site em baixo:$falhas"; exit 1; fi
