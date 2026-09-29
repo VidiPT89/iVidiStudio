@@ -8,10 +8,17 @@ const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://ividistudio.vercel.app"),
   title: "iVidi Studio HQ",
   description: "Live demo: iVidi Studio running on its own as a twelve-floor building — every floor a team, every request riding the elevator, every real-impact decision waiting for a human.",
   authors: [{ name: "David Arsénio Martins", url: "https://ividi.dev" }],
   creator: "David Arsénio Martins",
+  openGraph: {
+    type: "website",
+    siteName: "iVidi Studio HQ",
+    url: "/",
+  },
+  twitter: { card: "summary_large_image" },
 };
 
 export const viewport: Viewport = {
