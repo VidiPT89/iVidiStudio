@@ -1,0 +1,33 @@
+name: Triagem (de hora a hora)
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+  push:
+    branches: [main]
+    paths: ["elevador/entrada/**"]
+  workflow_dispatch:
+
+concurrency:
+  group: edificio
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  triagem:
+    # Interruptor geral: Settings → Secrets and variables → Variables → IVIDI_AUTOMACAO = ligada
+    if: vars.IVIDI_AUTOMACAO == 'ligada'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Há tickets na entrada?
+        id: entrada
+        run: echo "n=$(ls elevador/entrada/T-*.md 2>/dev/null | wc -l)" >> "$GITHUB_OUTPUT"
+      - if: steps.entrada.outputs.n != '0'
+        uses: ./.github/actions/piso
+        with:
+          comando: /triagem
+          token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}

@@ -1,0 +1,37 @@
+name: Relatório semanal (segunda 08:00 Lisboa)
+
+on:
+  # Dois horários UTC para cobrir hora de verão e de inverno; o passo "hora certa" escolhe um.
+  schedule:
+    - cron: "0 7 * * 1"
+    - cron: "0 8 * * 1"
+  workflow_dispatch:
+
+concurrency:
+  group: edificio
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  relatorio:
+    if: vars.IVIDI_AUTOMACAO == 'ligada'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Hora certa em Lisboa?
+        id: hora
+        run: |
+          if [ "$(TZ=Europe/Lisbon date +%H)" = "08" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "ok=sim" >> "$GITHUB_OUTPUT"
+          else
+            echo "ok=nao" >> "$GITHUB_OUTPUT"
+          fi
+      - if: steps.hora.outputs.ok == 'sim'
+        uses: actions/checkout@v4
+      - if: steps.hora.outputs.ok == 'sim'
+        uses: ./.github/actions/piso
+        with:
+          comando: /relatorio-semanal
+          token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
