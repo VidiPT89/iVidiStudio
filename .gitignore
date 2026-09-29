@@ -1,0 +1,19 @@
+# Segredos — nunca no repositório
+.env
+.env.*
+!.env.example
+
+# Sistema
+.DS_Store
+
+# Node / Next.js (dashboard da Fase 5)
+node_modules/
+.next/
+out/
+.vercel/
+
+# Claude Code local
+.claude/settings.local.json
+
+# Notas pessoais locais
+prompt-ividi-hq.md
