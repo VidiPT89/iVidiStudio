@@ -75,8 +75,8 @@ ividi-hq/
   pisos/<piso>/        README.md · processos/ · templates/ · registos/
   empresa/             missão, visão, valores, marca, preços, catálogo
   .claude/             agents/ (20) · commands/ (8) · hooks/ · settings.json
-  .github/             workflows/ (triagem, ronda, relatório, uptime, CI) · actions/piso
-  dashboard/           Painel da Cobertura (Next.js)
+  .github/             workflows/ (uptime, CI)
+  dashboard/           montra ao vivo (Next.js)
 ```
 
 ## Estado da construção
@@ -84,19 +84,20 @@ ividi-hq/
 - [x] Fase 1 — Fundações
 - [x] Fase 2 — A equipa (20 agentes em `.claude/agents/`)
 - [x] Fase 3 — Comandos (8 botões do elevador em `.claude/commands/`)
-- [x] Fase 4 — Automação 24/7 (workflows, hooks, webhook do portal) — desligada até `IVIDI_AUTOMACAO=ligada`
-- [x] Fase 5 — Painel da Cobertura (`dashboard/`)
+- [x] Fase 4 — Hooks de fronteira entre pisos e monitorização de uptime
+- [x] Fase 5 — Painel da Cobertura como montra ao vivo (`dashboard/`)
 
-## Ligar as automações
+## A montra ao vivo
 
-1. No terminal: `claude setup-token` → copia o token.
-2. GitHub → Settings → Secrets and variables → Actions:
-   - Secret `CLAUDE_CODE_OAUTH_TOKEN` = o token (usa a subscrição, sem API paga).
-   - Variable `IVIDI_AUTOMACAO` = `ligada` (interruptor geral; qualquer outro valor desliga tudo).
-3. O uptime diário e o CI não precisam de nada disto.
+O painel em [`dashboard/`](../dashboard/) é uma **demonstração pública** (https://ividistudio.vercel.app) para o ividi.dev:
+mostra a empresa a funcionar sozinha, com os produtos e serviços reais da iVidi Studio, mas com pedidos e clientes fictícios.
+A simulação é uma função da hora (`dashboard/src/lib/simulation.ts`): todos os visitantes veem o mesmo edifício ao mesmo tempo,
+sem servidor, sem base de dados e sem dados pessoais. As ações com impacto real param sempre no portão humano.
+
+O trabalho real da iVidi Studio é feito pelo Vidi; os agentes e os comandos continuam disponíveis para usar à mão no Claude Code.
 
 ## Visita guiada
 
 O ticket de exemplo [`T-20260922-001`](exemplos/elevador/aguarda-aprovacao/T-20260922-001-site-restaurante-cascais.md) é um pedido de um restaurante em Cascais
-que entrou pelo Client Portal e passou por Receção → Vendas → Jurídico → Finanças → Direção. Os registos de cada piso estão ligados
-na secção "Trabalho feito" do ticket (estão em `docs/exemplos/pisos/`). Os exemplos saíram do elevador para a operação real começar limpa.
+que passou por Receção → Vendas → Jurídico → Finanças → Direção. Os registos de cada piso estão ligados
+na secção "Trabalho feito" do ticket (estão em `docs/exemplos/pisos/`).

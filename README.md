@@ -1,30 +1,28 @@
 # iVidi Studio HQ 🏢
 
-> The whole iVidi Studio company run as a twelve-floor building: every floor a department with its own team of agents, every request a ticket riding the elevator, and a penthouse dashboard where only the decisions with real impact wait for a human.
+> A live showcase of iVidi Studio running as a twelve-floor building: every floor a department, every request a ticket riding the elevator, and every decision with real impact waiting for a human.
 
+[![Live demo](https://img.shields.io/badge/Live-demo-orange)](https://ividistudio.vercel.app)
 [![Report Bug](https://img.shields.io/badge/Report-Bug-red)](https://github.com/VidiPT89/iVidiStudio/issues)
 [![Request Feature](https://img.shields.io/badge/Request-Feature-blue)](https://github.com/VidiPT89/iVidiStudio/issues)
 
 <picture>
   <source media="(prefers-color-scheme: light)" srcset="docs/screenshots/hero-light.png">
-  <img alt="iVidi Studio HQ dashboard" src="docs/screenshots/hero-dark.png">
+  <img alt="iVidi Studio HQ live demo" src="docs/screenshots/hero-dark.png">
 </picture>
 
 ## ✨ Features
 
-- ✅ Twelve floors, from the Basement (Infrastructure & Security) to the Penthouse (Leadership), each with its mission, KPIs, step-by-step processes, templates and a decision log
-- ✅ The elevator: a ticket system made of plain Markdown files — changing state means moving the file between `entrada/`, `em-curso/`, `aguarda-aprovacao/` and `concluido/`, so every step is versioned in git
-- ✅ Twenty Claude Code agents — a floor manager for every floor, specialists for web, iOS, Android, proposals, store listings and UX, and a doorman who triages every new request
-- ✅ Eight slash commands as the elevator buttons: `/novo-pedido`, `/triagem`, `/piso`, `/ronda`, `/aprovacoes`, `/relatorio-semanal`, `/lancar-app` and `/novo-cliente`
-- ✅ Human gate: emails to clients, publishing, merging to `main`, production deploys, invoices, contracts, spending and deleting data never happen automatically
-- ✅ Floor boundaries enforced by a hook — an agent can only write to its own floor and to the elevator, and nobody reads `.env` files
-- ✅ Scheduled automation on GitHub Actions: hourly triage, a daily round at 08:00 Lisbon time, a Monday weekly report and a daily uptime check, all behind a single on/off switch
-- ✅ Client Portal webhook that turns a signed request into a ticket, validating the payload and stripping emails, phone numbers and tax IDs (GDPR)
-- ✅ Penthouse dashboard behind a login, with an interactive building whose elevator car rides to the selected floor, a live board of every ticket, the approval queue, recent activity and site status
-- ✅ Animated splash screen with developer credits once per browser session, then straight into the dashboard
-- ✅ Settings panel with a bilingual PT-PT / English switch, independent of your browser language
-- ✅ Dark, Light and System appearance, with the iVidi.dev orange, burnt yellow and black
-- ✅ Worked examples on every floor in `docs/exemplos/`, including a guided tour: a Cascais restaurant's request travelling from Reception to the Penthouse
+- ✅ Live simulation of the whole studio: new requests arrive every few seconds, get triaged at Reception, ride the elevator and pass through the right teams
+- ✅ Built from iVidi Studio's real products and services — iTetris, iPinball, iLemmings, Sudoku, Sueca, LiveShot, PhotographersPocketKnife, Next.js sites, Salesforce work — with fictional requests and clients, so no private details are ever shown
+- ✅ Deterministic by the clock: every visitor sees the same building at the same moment, with no server, no database and no personal data
+- ✅ Interactive building whose elevator car follows the work, lit windows for busy floors, and a panel with each floor's mission, team and KPIs
+- ✅ Human gate: proposals, store releases, deploys, invoices and contracts always stop and wait for approval
+- ✅ Live ticket board where cards glide between Inbox, In progress, Awaiting approval and Done, plus a live activity feed
+- ✅ Real uptime of ividi.dev and the Client Portal
+- ✅ The operating model behind it: twelve floors with processes and templates, twenty Claude Code agents, eight slash commands and a hook that keeps each agent on its own floor
+- ✅ Animated splash screen with developer credits once per browser session, then straight into the building
+- ✅ Settings panel with a bilingual PT-PT / English switch and Dark, Light and System appearance, in the iVidi.dev orange, burnt yellow and black
 
 <p align="center">
   <img alt="Splash screen" src="docs/screenshots/splash.png" width="49%">
@@ -35,12 +33,11 @@
 
 | Category | Technology |
 |----------|------------|
-| Dashboard | Next.js 16 (App Router), React 19, TypeScript |
+| Web | Next.js 16 (App Router), React 19, TypeScript |
 | Styling | Tailwind CSS 4 |
 | Animation | Motion |
-| Agents | Claude Code subagents, slash commands and hooks |
-| Automation | GitHub Actions |
-| Tickets & records | Markdown with YAML front matter |
+| Operating model | Claude Code subagents, slash commands and hooks |
+| Automation | GitHub Actions (uptime, CI) |
 | Testing | Vitest |
 | Hosting | Vercel |
 
@@ -48,15 +45,16 @@
 
 ```
 iVidiStudio/
+├── dashboard/           the live showcase (Next.js)
+│   └── src/lib/simulation.ts   the studio, generated from the clock
 ├── CLAUDE.md            building rules (PT-PT) every agent follows
 ├── docs/planta.md       floor plan with Mermaid diagrams (PT-PT)
 ├── docs/exemplos/       worked examples: one ticket per floor and their records
-├── elevador/            tickets: entrada/ · em-curso/ · aguarda-aprovacao/ · concluido/
+├── elevador/            ticket states: entrada/ · em-curso/ · aguarda-aprovacao/ · concluido/
 ├── pisos/               the 12 floors: README · processos/ · templates/ · registos/
 ├── empresa/             mission, brand, pricing and product catalogue
 ├── .claude/             agents/ · commands/ · hooks/ · settings.json
-├── .github/             scheduled workflows and the shared "run a floor" action
-└── dashboard/           the penthouse dashboard (Next.js)
+└── .github/             uptime check and CI
 ```
 
 ## 🚀 Quick Start
@@ -64,7 +62,6 @@ iVidiStudio/
 ### Prerequisites
 
 - Node.js 20+
-- [Claude Code](https://claude.com/claude-code) to run the agents and commands
 
 ### Installation
 
@@ -75,46 +72,21 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000). The dashboard reads the building (`elevador/` and `pisos/`) when it starts and at every build. In development it is open; in production it asks for `DASHBOARD_USER` / `DASHBOARD_PASSWORD` (see [`dashboard/.env.example`](dashboard/.env.example)).
+Open [http://localhost:3000](http://localhost:3000). No environment variables are needed.
 
 ## 📖 Usage
 
-1. Open Claude Code at the repository root and drop a request in: `/novo-pedido A restaurant in Cascais wants a website with bookings`
-2. Run `/triagem` — the doorman classifies it and sends it to the right floor
-3. Run `/piso 1` (or `/ronda` for every floor) to let the floor managers do the work
-4. Check `/aprovacoes` every day: approve with `/aprovacoes aprovar <id>` or send it back with `/aprovacoes rejeitar <id> "comment"`
-5. Follow everything on the dashboard — pick a floor to see its team, KPIs and work, open any ticket to read its history
-6. Open **Settings** (the gear in the header) to switch language (PT / EN) and appearance (System / Light / Dark)
-
-### Turning on the automation
-
-The workflows stay off until you switch them on, and they run on your Claude subscription, with no paid API key:
-
-1. Run `claude setup-token` and add the token as the repository secret `CLAUDE_CODE_OAUTH_TOKEN`
-2. Add the repository variable `IVIDI_AUTOMACAO` with the value `ligada`
-
-The daily uptime check and CI need neither. As a private repository the Actions budget is 2,000 free minutes a month, so triage runs four times a day plus right after every new portal request.
+1. Watch the splash screen, then the building starts working on its own
+2. Follow the elevator, or pick a floor to see its team, KPIs and what it has in hand — **Follow the elevator** takes you back to live
+3. Open any ticket to watch its journey through the building update live
+4. Keep an eye on **Human gate**: nothing with real impact happens until it has been approved
+5. Open **Settings** (the gear in the header) to switch language (PT / EN) and appearance (System / Light / Dark)
 
 ## 🔌 API Endpoints
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| `GET` | `/api/status` | Uptime and response time of ividi.dev and portal.ividi.dev (cached for 5 minutes, behind the dashboard login) |
-| `POST` | `/api/portal` | Client Portal webhook — creates a ticket in `elevador/entrada/`. Body signed with HMAC-SHA256 in `x-ividi-signature: sha256=<hex>`. The only route outside the login |
-
-`POST /api/portal` body:
-
-```json
-{
-  "clientRef": "CLI-0007",
-  "type": "pedido-cliente",
-  "title": "New website",
-  "summary": "What the client asked for",
-  "priority": "P2"
-}
-```
-
-Configure `PORTAL_WEBHOOK_SECRET`, `GITHUB_TOKEN` (fine-grained, contents: write on this repository) and `GITHUB_REPO` — see [`dashboard/.env.example`](dashboard/.env.example).
+| `GET` | `/api/status` | Uptime and response time of ividi.dev and portal.ividi.dev (cached for 5 minutes) |
 
 ## 🧪 Testing
 
@@ -126,7 +98,7 @@ npm test
 npm run build
 ```
 
-The tests cover the ticket and record parser, the webhook validation and GDPR redaction, ticket numbering, the hook that keeps every agent on its own floor and away from secrets, and that both languages define and use the same strings for every floor.
+The tests cover the simulation (same building for every visitor, consistent counters, tickets walking the floors in order, the human gate, both languages and Portuguese grammar), the hook that keeps every agent on its own floor and away from secrets, and that both languages define and use the same strings for every floor.
 
 ## 📄 License
 
