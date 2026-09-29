@@ -38,9 +38,7 @@ async function existingTicketFiles() {
 
 export async function POST(request: Request) {
   const { PORTAL_WEBHOOK_SECRET: secret, GITHUB_TOKEN, GITHUB_REPO } = process.env;
-  if (!secret || !GITHUB_TOKEN || !GITHUB_REPO) {
-    return Response.json({ error: "webhook not configured" }, { status: 503 });
-  }
+  if (!secret) return Response.json({ error: "webhook not configured" }, { status: 503 });
 
   const raw = await request.text();
   if (raw.length > MAX_BODY) return Response.json({ error: "payload too large" }, { status: 413 });
@@ -56,6 +54,9 @@ export async function POST(request: Request) {
   }
   const result = validate(parsed);
   if (!result.ok) return Response.json({ error: result.error }, { status: 422 });
+  if (!GITHUB_TOKEN || !GITHUB_REPO) {
+    return Response.json({ error: "GitHub access not configured" }, { status: 503 });
+  }
 
   const date = ticketDate(new Date());
   const files = await existingTicketFiles();
