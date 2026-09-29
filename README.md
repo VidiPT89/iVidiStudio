@@ -21,7 +21,7 @@
 - ✅ Scheduled automation on GitHub Actions: hourly triage, a daily round at 08:00 Lisbon time, a Monday weekly report and a daily uptime check, all behind a single on/off switch
 - ✅ Client Portal webhook that turns a signed request into a ticket, validating the payload and stripping emails, phone numbers and tax IDs (GDPR)
 - ✅ Penthouse dashboard with an interactive building whose elevator car rides to the selected floor, a live board of every ticket, the approval queue, recent activity and site status
-- ✅ Animated splash screen with developer credits, then straight into the dashboard
+- ✅ Animated splash screen with developer credits once per browser session, then straight into the dashboard
 - ✅ Bilingual PT-PT / English switch, independent of your browser language
 - ✅ Dark, Light and System appearance, with the iVidi.dev orange, burnt yellow and black
 - ✅ Worked examples on every floor, including a guided tour: a Cascais restaurant's request travelling from Reception to the Penthouse
@@ -125,7 +125,7 @@ npm test
 npm run build
 ```
 
-The tests cover the ticket and record parser, the webhook validation and GDPR redaction, ticket numbering, and that both languages define and use the same strings for every floor.
+The tests cover the ticket and record parser, the webhook validation and GDPR redaction, ticket numbering, the hook that keeps every agent on its own floor and away from secrets, and that both languages define and use the same strings for every floor.
 
 ## 📄 License
 
