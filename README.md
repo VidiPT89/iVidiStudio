@@ -26,7 +26,14 @@
 
 <p align="center">
   <img alt="Splash screen" src="docs/screenshots/splash.png" width="49%">
-  <img alt="The building" src="docs/screenshots/building-dark.png" width="49%">
+  <picture>
+    <source media="(prefers-color-scheme: light)" srcset="docs/screenshots/building-light.png">
+    <img alt="The building" src="docs/screenshots/building-dark.png" width="49%">
+  </picture>
+</p>
+
+<p align="center">
+  <img alt="The elevator: tickets gliding between states" src="docs/screenshots/elevator-dark.png">
 </p>
 
 ## 🛠️ Tech Stack
