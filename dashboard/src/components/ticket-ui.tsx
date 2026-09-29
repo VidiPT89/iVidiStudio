@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
-import { useEffect } from "react";
+import { memo, useEffect } from "react";
 import { floorBySlug } from "@/lib/floors";
 import { useLang, useMessages } from "@/lib/preferences";
 import type { Priority, SimTicket, TicketState } from "@/lib/simulation";
@@ -51,7 +51,14 @@ export function PriorityBadge({ priority }: { priority: Priority }) {
   );
 }
 
-export function TicketCard({ ticket, onOpen }: { ticket: SimTicket; onOpen: (t: SimTicket) => void }) {
+type TicketCardProps = { ticket: SimTicket; onOpen: (t: SimTicket) => void };
+
+/** Re-renders only when its ticket moves, not on every tick of the simulation clock. */
+export const TicketCard = memo(TicketCardView, (a: TicketCardProps, b: TicketCardProps) =>
+  a.onOpen === b.onOpen && a.ticket.id === b.ticket.id && a.ticket.state === b.ticket.state && a.ticket.floor === b.ticket.floor,
+);
+
+function TicketCardView({ ticket, onOpen }: TicketCardProps) {
   const [lang] = useLang();
   const floorName = useFloorName();
   return (

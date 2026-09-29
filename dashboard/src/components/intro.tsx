@@ -1,5 +1,6 @@
 "use client";
 
+import { MotionConfig } from "motion/react";
 import { createContext, useCallback, useContext, useState, type ReactNode } from "react";
 import { Splash } from "./splash";
 
@@ -12,9 +13,12 @@ export function IntroProvider({ children }: { children: ReactNode }) {
   const [done, setDone] = useState(false);
   const finish = useCallback(() => setDone(true), []);
   return (
-    <IntroContext.Provider value={done}>
-      <Splash onDone={finish} />
-      {children}
-    </IntroContext.Provider>
+    // reducedMotion="user": Motion animations follow the system's "reduce motion" setting too.
+    <MotionConfig reducedMotion="user">
+      <IntroContext.Provider value={done}>
+        <Splash onDone={finish} />
+        {children}
+      </IntroContext.Provider>
+    </MotionConfig>
   );
 }

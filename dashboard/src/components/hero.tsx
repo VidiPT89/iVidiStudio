@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
-import { useMessages } from "@/lib/preferences";
+import { useLang, useMessages } from "@/lib/preferences";
 import { useIntroDone } from "./intro";
 import { useLive } from "./live";
 
@@ -9,10 +9,11 @@ export function Hero() {
   const t = useMessages();
   const ready = useIntroDone();
   const sim = useLive();
+  const [lang] = useLang();
   const show = (y: number) => (ready ? { opacity: 1, y: 0 } : { opacity: 0, y });
   const stats = [
     { label: t.statRequests, value: sim.requestsToday, accent: false },
-    { label: t.statInProgress, value: sim.byState["em-curso"] + sim.byState.entrada, accent: false },
+    { label: t.statInProgress, value: sim.byState["em-curso"], accent: false },
     { label: t.statPending, value: sim.byState["aguarda-aprovacao"], accent: true },
     { label: t.statDone, value: sim.doneToday, accent: false },
   ];
@@ -23,8 +24,9 @@ export function Hero() {
       <motion.div
         className="pointer-events-none absolute -top-40 left-1/2 h-[30rem] w-[60rem] -translate-x-1/2 rounded-full"
         style={{ background: "radial-gradient(ellipse, var(--glow), transparent 70%)" }}
-        animate={{ opacity: [0.7, 1, 0.7], scale: [1, 1.05, 1] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
       />
 
       <div className="relative mx-auto max-w-7xl px-4 pb-10 pt-16 sm:px-6 sm:pt-24">
@@ -97,7 +99,7 @@ export function Hero() {
                     exit={{ y: -24, opacity: 0 }}
                     transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    {sim.now ? s.value.toLocaleString("pt-PT") : "—"}
+                    {sim.now ? s.value.toLocaleString(lang === "pt" ? "pt-PT" : "en-GB") : "—"}
                   </motion.span>
                 </AnimatePresence>
               </p>

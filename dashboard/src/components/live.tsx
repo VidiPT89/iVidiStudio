@@ -3,10 +3,17 @@
 import { createContext, useContext, useMemo, useSyncExternalStore, type ReactNode } from "react";
 import { simulate, type Simulation } from "@/lib/simulation";
 
-// One clock for the whole page: the simulation is recomputed once per second.
+// One clock for the whole page: the simulation is recomputed once per second,
+// and not at all while the tab is hidden (it catches up the moment it is shown).
 const subscribe = (tick: () => void) => {
-  const id = setInterval(tick, 1000);
-  return () => clearInterval(id);
+  const id = setInterval(() => {
+    if (!document.hidden) tick();
+  }, 1000);
+  document.addEventListener("visibilitychange", tick);
+  return () => {
+    clearInterval(id);
+    document.removeEventListener("visibilitychange", tick);
+  };
 };
 const nowToSecond = () => Math.floor(Date.now() / 1000) * 1000;
 // The page is prerendered: the server renders an empty building and the browser fills it in.
