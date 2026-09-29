@@ -31,7 +31,7 @@
 
 | Ideia | Nota |
 |-------|------|
-| LiveShot | Venda de fotografia de eventos em tempo quase real. Vinha do prompt inicial; não existe repositório nem projeto. |
+| LiveShot | Venda de fotografia de eventos em tempo quase real. Ideia do Vidi, ainda sem repositório nem projeto. |
 
 > ⚠️ "Tetris", "Lemmings" e "Mahjong" podem ter implicações de marca registada —
 > o piso 8 deve verificar antes de publicar nas lojas.
