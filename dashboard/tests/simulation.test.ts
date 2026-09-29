@@ -83,10 +83,15 @@ describe("ticketForSlot", () => {
   });
 });
 
-describe("Portuguese grammar", () => {
-  it("uses the feminine article for Sueca and Petanca", () => {
-    const titles = Array.from({ length: 3000 }, (_, i) => ticketForSlot(i).title.pt);
-    expect(titles.some((t) => /\b(da|na) (Sueca|Petanca)\b/.test(t))).toBe(true);
-    expect(titles.some((t) => /\b(do|no) (Sueca|Petanca)\b/.test(t))).toBe(false);
+describe("real products", () => {
+  const titles = Array.from({ length: 3000 }, (_, i) => ticketForSlot(i).title);
+
+  it("uses the apps' real names, as on GitHub and in the stores", () => {
+    const all = titles.flatMap((t) => [t.pt, t.en]).join("\n");
+    for (const name of ["iSudoku", "iSueca", "iSolitaire", "iMahjong", "iPetanque", "PhotographersPocketKnife"]) {
+      expect(all).toContain(name);
+    }
+    // Old placeholder names from the first prompt must never come back.
+    expect(all).not.toMatch(/\b(Sudoku|Sueca|Solitário|Mahjong|Petanca|LiveShot)\b/);
   });
 });

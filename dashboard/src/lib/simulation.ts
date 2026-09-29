@@ -69,27 +69,24 @@ const between = (r: () => number, min: number, max: number) => Math.round(min + 
 // ---------------------------------------------------------------------------
 // The studio's real catalogue.
 
-// Portuguese needs the article: "do iTetris" but "da Sueca".
-interface Product {
-  name: string;
-  feminine?: boolean;
-}
-
-const GAMES: Product[] = [
-  { name: "iTetris" },
-  { name: "iPinball" },
-  { name: "iLemmings" },
-  { name: "Sudoku" },
-  { name: "Sueca", feminine: true },
-  { name: "Solitário" },
-  { name: "Mahjong" },
-  { name: "Petanca", feminine: true },
+// The studio's real apps and games, exactly as they are named on GitHub and in the stores.
+const GAMES = [
+  "iTetris",
+  "iPinball",
+  "iLemmings",
+  "iSudoku",
+  "iSueca",
+  "iSolitaire",
+  "iMahjong",
+  "iPetanque",
+  "iXadrez",
+  "iBeyblade",
+  "iPacManHD",
+  "DroidSudoku",
+  "DroidMahjong",
+  "DroidXadrez",
 ];
-const APPS: Product[] = [...GAMES, { name: "PhotographersPocketKnife" }, { name: "LiveShot" }];
-
-const de = (p: Product) => `${p.feminine ? "da" : "do"} ${p.name}`;
-const em = (p: Product) => `${p.feminine ? "na" : "no"} ${p.name}`;
-const o = (p: Product) => `${p.feminine ? "a" : "o"} ${p.name}`;
+const APPS = [...GAMES, "PhotographersPocketKnife", "iSpoonFit", "iFaceAIID"];
 
 const CLIENTS: Text[] = [
   { pt: "Site com reservas para um restaurante em Cascais", en: "Booking website for a restaurant in Cascais" },
@@ -136,9 +133,9 @@ const TEMPLATES: Template[] = [
     make: (r) => {
       const app = pick(r, APPS);
       return {
-        title: { pt: `Nova versão ${de(app)}`, en: `New ${app.name} release` },
+        title: { pt: `Nova versão do ${app}`, en: `New ${app} release` },
         route: ["03-produto", "04-engenharia", "05-qa", "02-marketing", "08-juridico"],
-        gate: { floor: "02-marketing", action: { pt: `publicar ${o(app)} na loja`, en: `publish ${app.name} to the store` } },
+        gate: { floor: "02-marketing", action: { pt: `publicar o ${app} na loja`, en: `publish ${app} to the store` } },
       };
     },
   },
@@ -147,7 +144,7 @@ const TEMPLATES: Template[] = [
     make: (r) => {
       const app = pick(r, APPS);
       return {
-        title: { pt: `Bug reportado ${em(app)}`, en: `Bug reported in ${app.name}` },
+        title: { pt: `Bug reportado no ${app}`, en: `Bug reported in ${app}` },
         route: ["05-qa", "04-engenharia", "05-qa"],
         gate: { floor: "05-qa", action: { pt: "merge do PR em main", en: "merge the pull request into main" } },
         priority: r() < 0.25 ? "P0" : "P1",
@@ -160,7 +157,7 @@ const TEMPLATES: Template[] = [
       const app = pick(r, GAMES);
       const stars = between(r, 2, 5);
       return {
-        title: { pt: `Review de ${stars}★ ${em(app)}`, en: `${stars}★ review on ${app.name}` },
+        title: { pt: `Review de ${stars}★ no ${app}`, en: `${stars}★ review on ${app}` },
         route: ["06-sucesso-cliente"],
         gate: { floor: "06-sucesso-cliente", action: { pt: "publicar a resposta à review", en: "publish the reply to the review" } },
       };
@@ -173,7 +170,7 @@ const TEMPLATES: Template[] = [
         { pt: "Artigo: do fotojornalismo ao código", en: "Article: from photojournalism to code" },
         (() => {
           const app = pick(r, APPS);
-          return { pt: `Post: bastidores ${de(app)}`, en: `Post: behind the scenes of ${app.name}` };
+          return { pt: `Post: bastidores do ${app}`, en: `Post: behind the scenes of ${app}` };
         })(),
         { pt: "Newsletter do mês", en: "Monthly newsletter" },
         { pt: "SEO da página de projetos do ividi.dev", en: "SEO for the ividi.dev projects page" },
@@ -213,7 +210,7 @@ const TEMPLATES: Template[] = [
     make: (r) => {
       const app = pick(r, APPS);
       return {
-        title: { pt: `Política de privacidade ${de(app)}`, en: `${app.name} privacy policy` },
+        title: { pt: `Política de privacidade do ${app}`, en: `${app} privacy policy` },
         route: ["08-juridico"],
         gate: { floor: "08-juridico", action: { pt: "publicar a política (revista por advogado)", en: "publish the policy (reviewed by a lawyer)" } },
       };
@@ -224,7 +221,7 @@ const TEMPLATES: Template[] = [
     make: (r) => ({
       title: pick(r, [
         { pt: "Onboarding de um designer freelancer", en: "Onboarding a freelance designer" },
-        { pt: "Parceria com um fotógrafo de eventos (LiveShot)", en: "Partnership with an event photographer (LiveShot)" },
+        { pt: "Parceria com um fotógrafo de eventos", en: "Partnership with an event photographer" },
       ]),
       route: ["09-pessoas", "08-juridico"],
       gate: { floor: "09-pessoas", action: { pt: "assinar o acordo", en: "sign the agreement" } },
