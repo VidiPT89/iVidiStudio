@@ -97,6 +97,6 @@ ividi-hq/
 
 ## Visita guiada
 
-O ticket [`T-20260922-001`](../elevador/aguarda-aprovacao/T-20260922-001-site-restaurante-cascais.md) é um pedido de um restaurante em Cascais
+O ticket de exemplo [`T-20260922-001`](exemplos/elevador/aguarda-aprovacao/T-20260922-001-site-restaurante-cascais.md) é um pedido de um restaurante em Cascais
 que entrou pelo Client Portal e passou por Receção → Vendas → Jurídico → Finanças → Direção. Os registos de cada piso estão ligados
-na secção "Trabalho feito" do ticket, e a aprovação final espera por ti no painel e em `/aprovacoes`.
+na secção "Trabalho feito" do ticket (estão em `docs/exemplos/pisos/`). Os exemplos saíram do elevador para a operação real começar limpa.
