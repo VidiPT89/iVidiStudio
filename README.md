@@ -20,11 +20,11 @@
 - ✅ Floor boundaries enforced by a hook — an agent can only write to its own floor and to the elevator, and nobody reads `.env` files
 - ✅ Scheduled automation on GitHub Actions: hourly triage, a daily round at 08:00 Lisbon time, a Monday weekly report and a daily uptime check, all behind a single on/off switch
 - ✅ Client Portal webhook that turns a signed request into a ticket, validating the payload and stripping emails, phone numbers and tax IDs (GDPR)
-- ✅ Penthouse dashboard with an interactive building whose elevator car rides to the selected floor, a live board of every ticket, the approval queue, recent activity and site status
+- ✅ Penthouse dashboard behind a login, with an interactive building whose elevator car rides to the selected floor, a live board of every ticket, the approval queue, recent activity and site status
 - ✅ Animated splash screen with developer credits once per browser session, then straight into the dashboard
 - ✅ Bilingual PT-PT / English switch, independent of your browser language
 - ✅ Dark, Light and System appearance, with the iVidi.dev orange, burnt yellow and black
-- ✅ Worked examples on every floor, including a guided tour: a Cascais restaurant's request travelling from Reception to the Penthouse
+- ✅ Worked examples on every floor in `docs/exemplos/`, including a guided tour: a Cascais restaurant's request travelling from Reception to the Penthouse
 
 <p align="center">
   <img alt="Splash screen" src="docs/screenshots/splash.png" width="49%">
@@ -50,6 +50,7 @@
 iVidiStudio/
 ├── CLAUDE.md            building rules (PT-PT) every agent follows
 ├── docs/planta.md       floor plan with Mermaid diagrams (PT-PT)
+├── docs/exemplos/       worked examples: one ticket per floor and their records
 ├── elevador/            tickets: entrada/ · em-curso/ · aguarda-aprovacao/ · concluido/
 ├── pisos/               the 12 floors: README · processos/ · templates/ · registos/
 ├── empresa/             mission, brand, pricing and product catalogue
@@ -74,7 +75,7 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000). The dashboard reads the building (`elevador/` and `pisos/`) when it starts and at every build.
+Open [http://localhost:3000](http://localhost:3000). The dashboard reads the building (`elevador/` and `pisos/`) when it starts and at every build. In development it is open; in production it asks for `DASHBOARD_USER` / `DASHBOARD_PASSWORD` (see [`dashboard/.env.example`](dashboard/.env.example)).
 
 ## 📖 Usage
 
@@ -92,14 +93,14 @@ The workflows stay off until you switch them on, and they run on your Claude sub
 1. Run `claude setup-token` and add the token as the repository secret `CLAUDE_CODE_OAUTH_TOKEN`
 2. Add the repository variable `IVIDI_AUTOMACAO` with the value `ligada`
 
-The daily uptime check and CI need neither.
+The daily uptime check and CI need neither. As a private repository the Actions budget is 2,000 free minutes a month, so triage runs four times a day plus right after every new portal request.
 
 ## 🔌 API Endpoints
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| `GET` | `/api/status` | Uptime and response time of ividi.dev and portal.ividi.dev (cached for 5 minutes) |
-| `POST` | `/api/portal` | Client Portal webhook — creates a ticket in `elevador/entrada/`. Body signed with HMAC-SHA256 in `x-ividi-signature: sha256=<hex>` |
+| `GET` | `/api/status` | Uptime and response time of ividi.dev and portal.ividi.dev (cached for 5 minutes, behind the dashboard login) |
+| `POST` | `/api/portal` | Client Portal webhook — creates a ticket in `elevador/entrada/`. Body signed with HMAC-SHA256 in `x-ividi-signature: sha256=<hex>`. The only route outside the login |
 
 `POST /api/portal` body:
 
