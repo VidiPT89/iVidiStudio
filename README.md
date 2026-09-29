@@ -22,7 +22,7 @@
 - ✅ Client Portal webhook that turns a signed request into a ticket, validating the payload and stripping emails, phone numbers and tax IDs (GDPR)
 - ✅ Penthouse dashboard behind a login, with an interactive building whose elevator car rides to the selected floor, a live board of every ticket, the approval queue, recent activity and site status
 - ✅ Animated splash screen with developer credits once per browser session, then straight into the dashboard
-- ✅ Bilingual PT-PT / English switch, independent of your browser language
+- ✅ Settings panel with a bilingual PT-PT / English switch, independent of your browser language
 - ✅ Dark, Light and System appearance, with the iVidi.dev orange, burnt yellow and black
 - ✅ Worked examples on every floor in `docs/exemplos/`, including a guided tour: a Cascais restaurant's request travelling from Reception to the Penthouse
 
@@ -84,7 +84,7 @@ Open [http://localhost:3000](http://localhost:3000). The dashboard reads the bui
 3. Run `/piso 1` (or `/ronda` for every floor) to let the floor managers do the work
 4. Check `/aprovacoes` every day: approve with `/aprovacoes aprovar <id>` or send it back with `/aprovacoes rejeitar <id> "comment"`
 5. Follow everything on the dashboard — pick a floor to see its team, KPIs and work, open any ticket to read its history
-6. Switch language (PT / EN) and appearance (System / Light / Dark) from the header
+6. Open **Settings** (the gear in the header) to switch language (PT / EN) and appearance (System / Light / Dark)
 
 ### Turning on the automation
 
