@@ -25,8 +25,8 @@ export function Header() {
   const themeLabel = { system: t.themeSystem, light: t.themeLight, dark: t.themeDark };
   const nav = [
     ["#edificio", t.navBuilding],
-    ["#elevador", t.navElevator],
     ["#aprovacoes", t.navApprovals],
+    ["#elevador", t.navElevator],
     ["#atividade", t.navActivity],
   ];
 
