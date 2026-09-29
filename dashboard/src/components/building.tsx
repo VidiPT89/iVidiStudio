@@ -88,7 +88,14 @@ export function BuildingSection() {
                 const active = activeCount(f.slug);
                 const isSel = i === selected;
                 return (
-                  <li key={f.slug} className={f.level === -1 ? "border-t-2 border-dashed border-amber/50" : ""}>
+                  <li
+                    key={f.slug}
+                    className={
+                      f.level === -1
+                        ? "relative before:absolute before:inset-x-0 before:top-0 before:border-t-2 before:border-dashed before:border-amber/50"
+                        : ""
+                    }
+                  >
                     <button
                       type="button"
                       onClick={() => setPicked(i)}
