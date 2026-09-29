@@ -1,6 +1,6 @@
 ---
 id: T-20260923-003
-titulo: "Spec: desafio diário no Sudoku"
+titulo: "Spec: desafio diário no iSudoku"
 origem: interno
 piso-origem: 00-rececao
 piso-destino: "03-produto"
@@ -8,14 +8,14 @@ prioridade: P2
 estado: concluido
 tipo: "interno"
 cliente-ref: ""
-produto: "Sudoku"
+produto: "iSudoku"
 requer-aprovacao: false
 acao-aprovacao: ""
 criado: 2026-09-23
 atualizado: 2026-09-23
 ---
 
-# Spec: desafio diário no Sudoku
+# Spec: desafio diário no iSudoku
 
 ## Pedido
 Um puzzle por dia, igual para todos, com série de dias seguidos.

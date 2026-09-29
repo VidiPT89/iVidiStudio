@@ -1,6 +1,6 @@
-# Spec: desafio diário no Sudoku
+# Spec: desafio diário no iSudoku
 
-- **Produto:** Sudoku · **Plataformas:** iOS
+- **Produto:** iSudoku · **Plataformas:** iOS
 - **Problema:** jogadores abrem a app sem objetivo; retenção baixa ao 7.º dia.
 - **Métrica de sucesso:** retenção D7 +20 %.
 

@@ -1,4 +1,4 @@
-# Resposta à review de 2★ da Sueca
+# Resposta à review de 2★ do iSueca
 
 - **Data:** 2026-09-26
 - **Ticket:** T-20260925-001

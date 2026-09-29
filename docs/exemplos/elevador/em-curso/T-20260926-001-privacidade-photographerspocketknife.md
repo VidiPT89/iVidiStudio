@@ -1,6 +1,6 @@
 ---
 id: T-20260926-001
-titulo: "Política de privacidade do LiveShot"
+titulo: "Política de privacidade do PhotographersPocketKnife"
 origem: interno
 piso-origem: 00-rececao
 piso-destino: "08-juridico"
@@ -8,17 +8,17 @@ prioridade: P1
 estado: em-curso
 tipo: "juridico"
 cliente-ref: ""
-produto: "LiveShot"
+produto: "PhotographersPocketKnife"
 requer-aprovacao: false
 acao-aprovacao: ""
 criado: 2026-09-26
 atualizado: 2026-09-27
 ---
 
-# Política de privacidade do LiveShot
+# Política de privacidade do PhotographersPocketKnife
 
 ## Pedido
-O LiveShot trata fotografias de pessoas em eventos: precisa de política de privacidade e base legal.
+O PhotographersPocketKnife entrega fotografias e galerias a clientes (FTP/SFTP/WebDAV/S3): precisa de política de privacidade e base legal para os dados dos clientes.
 
 ## Contexto
 Exemplo de funcionamento do edifício.
@@ -28,7 +28,7 @@ Exemplo de funcionamento do edifício.
 - [ ] Registo de tratamentos RGPD atualizado
 
 ## Trabalho feito
-- Rascunho em curso em `pisos/08-juridico/registos/2026-09-27-privacidade-liveshot.md`
+- Rascunho em curso em `pisos/08-juridico/registos/2026-09-27-privacidade-photographerspocketknife.md`
 
 ## Histórico
 | Data | Piso | Ação | Estado |

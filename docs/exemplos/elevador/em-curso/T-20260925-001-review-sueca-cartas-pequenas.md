@@ -1,6 +1,6 @@
 ---
 id: T-20260925-001
-titulo: "Review de 2★ na Sueca: cartas pequenas no iPhone SE"
+titulo: "Review de 2★ no iSueca: cartas pequenas no iPhone SE"
 origem: email
 piso-origem: 00-rececao
 piso-destino: "06-sucesso-cliente"
@@ -8,14 +8,14 @@ prioridade: P2
 estado: em-curso
 tipo: "pedido-cliente"
 cliente-ref: ""
-produto: "Sueca"
+produto: "iSueca"
 requer-aprovacao: false
 acao-aprovacao: ""
 criado: 2026-09-25
 atualizado: 2026-09-26
 ---
 
-# Review de 2★ na Sueca: cartas pequenas no iPhone SE
+# Review de 2★ no iSueca: cartas pequenas no iPhone SE
 
 ## Pedido
 Utilizador queixa-se de que as cartas são pequenas em ecrãs de 4,7".

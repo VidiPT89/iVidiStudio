@@ -1,7 +1,7 @@
 # Relatório semanal: semana de 2026-09-22
 
 ## Resumo em 3 linhas
-Primeiro cliente de serviços (CLI-0001) com proposta e contrato prontos. Sudoku ganha desafio diário. Três ações à espera do Vidi.
+Primeiro cliente de serviços (CLI-0001) com proposta e contrato prontos. O iSudoku ganha o desafio diário. Três ações à espera do Vidi.
 
 ## Aprovações pendentes
 - T-20260922-001: enviar proposta e contrato a CLI-0001
@@ -16,4 +16,4 @@ Primeiro cliente de serviços (CLI-0001) com proposta e contrato prontos. Sudoku
 ## 3 prioridades para a próxima semana
 1. Definir preços.
 2. Fechar CLI-0001.
-3. Lançar o desafio diário do Sudoku.
+3. Lançar o desafio diário do iSudoku.

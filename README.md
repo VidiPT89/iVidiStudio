@@ -14,7 +14,7 @@
 ## ✨ Features
 
 - ✅ Live simulation of the whole studio: new requests arrive every few seconds, get triaged at Reception, ride the elevator and pass through the right teams
-- ✅ Built from iVidi Studio's real products and services — iTetris, iPinball, iLemmings, Sudoku, Sueca, LiveShot, PhotographersPocketKnife, Next.js sites, Salesforce work — with fictional requests and clients, so no private details are ever shown
+- ✅ Built from iVidi Studio's real products and services — iTetris, iPinball, iLemmings, iSudoku, iSueca, iSolitaire, iMahjong, iPetanque, iXadrez, PhotographersPocketKnife, iSpoonFit, Next.js sites, Salesforce work — with fictional requests and clients, so no private details are ever shown
 - ✅ Deterministic by the clock: every visitor sees the same building at the same moment, with no server, no database and no personal data
 - ✅ Interactive building whose elevator car follows the work, lit windows for busy floors, and a panel with each floor's mission, team and KPIs
 - ✅ Human gate: proposals, store releases, deploys, invoices and contracts always stop and wait for approval

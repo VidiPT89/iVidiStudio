@@ -1,6 +1,6 @@
 ---
 id: T-20260924-001
-titulo: "Implementar desafio diário no Sudoku"
+titulo: "Implementar desafio diário no iSudoku"
 origem: interno
 piso-origem: 00-rececao
 piso-destino: "04-engenharia"
@@ -8,14 +8,14 @@ prioridade: P2
 estado: em-curso
 tipo: "interno"
 cliente-ref: ""
-produto: "Sudoku"
+produto: "iSudoku"
 requer-aprovacao: false
 acao-aprovacao: ""
 criado: 2026-09-24
 atualizado: 2026-09-26
 ---
 
-# Implementar desafio diário no Sudoku
+# Implementar desafio diário no iSudoku
 
 ## Pedido
 Implementar a spec T-20260923-003: gerador determinístico por data e contador de série.

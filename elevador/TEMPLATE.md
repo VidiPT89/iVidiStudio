@@ -8,7 +8,7 @@ prioridade: P2
 estado: entrada            # entrada | em-curso | aguarda-aprovacao | concluido
 tipo: ""                   # pedido-cliente | lead | bug | conteudo | lancamento | financeiro | juridico | infra | interno
 cliente-ref: ""            # só ID (ex.: CLI-0007 ou ID do portal) — nunca dados pessoais (RGPD)
-produto: ""                # ex.: iTetris, LiveShot, site-cliente-x (opcional)
+produto: ""                # ex.: iTetris, iSudoku, site-cliente-x (opcional)
 requer-aprovacao: false    # true se envolver ação do portão humano (ver CLAUDE.md regra 3)
 acao-aprovacao: ""         # descreve a ação exata que o Vidi tem de aprovar
 criado: AAAA-MM-DD
