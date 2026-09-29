@@ -1,0 +1,147 @@
+@import "tailwindcss";
+
+/* iVidi brand: orange, burnt yellow and black (same palette as ividi.dev). */
+:root,
+:root[data-theme="light"] {
+  --bg: #faf7f2;
+  --surface: #ffffff;
+  --surface-2: #f3eee6;
+  --line: #e8dfd2;
+  --fg: #16120e;
+  --muted: #6e655b;
+  --orange: #e25c00;
+  --amber: #b45f00;
+  --gold: #d49600;
+  --glow: rgb(254 110 0 / 0.16);
+  --grid: rgb(22 18 14 / 0.05);
+  --ok: #059669;
+  --bad: #dc2626;
+}
+
+:root[data-theme="dark"] {
+  --bg: #0a0a0f;
+  --surface: #111118;
+  --surface-2: #181821;
+  --line: #262632;
+  --fg: #e2e8f0;
+  --muted: #8a92a6;
+  --orange: #fe6e00;
+  --amber: #dd7400;
+  --gold: #fcbb00;
+  --glow: rgb(254 110 0 / 0.22);
+  --grid: rgb(226 232 240 / 0.04);
+  --ok: #00d294;
+  --bad: #ff6568;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-orange: var(--orange);
+  --color-amber: var(--amber);
+  --color-gold: var(--gold);
+  --color-ok: var(--ok);
+  --color-bad: var(--bad);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease;
+}
+
+::selection {
+  background: var(--orange);
+  color: #0a0a0f;
+}
+
+.text-brand {
+  background: linear-gradient(100deg, var(--orange), var(--gold) 55%, var(--orange));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shine 6s linear infinite;
+}
+
+.bg-brand {
+  background: linear-gradient(135deg, var(--orange), var(--gold));
+}
+
+.grid-backdrop {
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse at 50% 0%, black 30%, transparent 75%);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 1.25rem;
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 2px;
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.animate-blink {
+  animation: blink 1.6s ease-in-out infinite;
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 1.8s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
