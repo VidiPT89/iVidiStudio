@@ -1,4 +1,4 @@
-# Processo — Ficha de App Store / Play Store
+# Processo — Ficha de App Store
 
 **Piso:** Piso 2 · Marketing & Conteúdos
 

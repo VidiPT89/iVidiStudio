@@ -11,7 +11,7 @@ Fazer com que as pessoas certas descubram a iVidi e os seus produtos, contando a
 - SEO do ividi.dev (PT-PT e EN)
 - Blog e casos de estudo
 - Redes sociais (LinkedIn, Instagram)
-- Fichas da App Store e Play Store (texto, keywords, screenshots)
+- Fichas da App Store (texto, keywords, screenshots)
 - Newsletter
 
 ## Entradas
@@ -47,7 +47,7 @@ Vão sempre para `elevador/aguarda-aprovacao/`:
 | Agente | Papel |
 |---|---|
 | `chefe-marketing` | chefe de piso |
-| `marketing-lojas` | fichas App Store / Play Store e ASO |
+| `marketing-lojas` | fichas App Store e ASO |
 
 _(Agentes criados na Fase 2, em `.claude/agents/`.)_
 

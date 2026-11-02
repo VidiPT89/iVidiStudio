@@ -10,7 +10,6 @@ Transformar specs em software que funciona: código limpo, em branches, com test
 
 - Web: Next.js / React / Node.js
 - iOS e macOS: Swift / SwiftUI
-- Android: Kotlin
 - Salesforce (projetos de clientes)
 - Criar branch por ticket, implementar, testar e abrir PR
 
@@ -46,7 +45,6 @@ Vão sempre para `elevador/aguarda-aprovacao/`:
 | `chefe-engenharia` | chefe de piso |
 | `engenharia-web` | Next.js/React/Node |
 | `engenharia-ios` | Swift/SwiftUI (iOS e macOS) |
-| `engenharia-android` | Kotlin |
 
 _(Agentes criados na Fase 2, em `.claude/agents/`.)_
 

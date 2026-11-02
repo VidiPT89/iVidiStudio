@@ -1,6 +1,6 @@
 ---
 name: marketing-lojas
-description: Especialista de App Store e Play Store (ASO). Usa para fichas de loja, keywords e notas de versão.
+description: Especialista de App Store (ASO). Usa para fichas de loja, keywords e notas de versão.
 tools: Read, Glob, Grep, Write, Edit
 ---
 

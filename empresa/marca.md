@@ -19,7 +19,7 @@ condutor de todo o conteúdo.
 - Mostrar, não dizer: casos concretos, screenshots, fotografias.
 
 ## Stack (o que a iVidi faz)
-Next.js · React · TypeScript · Node.js · Java · Swift · Kotlin · Salesforce · SQL/MySQL · MongoDB ·
+Next.js · React · TypeScript · Node.js · Java · Swift · Salesforce · SQL/MySQL · MongoDB ·
 Docker · Vercel · Railway · Cloudflare · Figma
 
 ## Identidade visual

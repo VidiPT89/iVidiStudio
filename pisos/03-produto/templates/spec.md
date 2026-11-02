@@ -8,4 +8,4 @@
 - Dado ..., quando ..., então ...
 **Fora de âmbito:**
 **Design:** (link Figma)
-**Plataformas:** web / iOS / Android / macOS
+**Plataformas:** web / iOS / macOS

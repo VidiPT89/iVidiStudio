@@ -32,7 +32,7 @@ flowchart TB
 | 1 | [`pisos/01-vendas`](../pisos/01-vendas/) | Vendas | Leads, qualificação, propostas e orçamentos |
 | 2 | [`pisos/02-marketing`](../pisos/02-marketing/) | Marketing & Conteúdos | SEO, blog, redes sociais, fichas das lojas, newsletter |
 | 3 | [`pisos/03-produto`](../pisos/03-produto/) | Produto & Design | Roadmaps, specs, UX, design system |
-| 4 | [`pisos/04-engenharia`](../pisos/04-engenharia/) | Engenharia | Web, iOS, Android — implementa specs em branches e abre PRs |
+| 4 | [`pisos/04-engenharia`](../pisos/04-engenharia/) | Engenharia | Web, iOS, macOS — implementa specs em branches e abre PRs |
 | 5 | [`pisos/05-qa`](../pisos/05-qa/) | QA & Testes | Testes automáticos, revisão de PRs, bugs, TestFlight |
 | 6 | [`pisos/06-sucesso-cliente`](../pisos/06-sucesso-cliente/) | Sucesso do Cliente | Suporte, onboarding, FAQs, reviews, NPS |
 | 7 | [`pisos/07-financas`](../pisos/07-financas/) | Finanças | Orçamentos, faturação certificada, IVA, tesouraria, subscrições |

@@ -112,10 +112,10 @@ export const FLOORS: Floor[] = [
     label: t("Piso 4", "Floor 4"),
     name: t("Engenharia", "Engineering"),
     mission: t(
-      "Web, iOS e Android: implementa specs em branches e abre PRs.",
-      "Web, iOS and Android: turns specs into branches and pull requests.",
+      "Web, iOS e macOS: implementa specs em branches e abre PRs.",
+      "Web, iOS and macOS: turns specs into branches and pull requests.",
     ),
-    agents: ["chefe-engenharia", "engenharia-web", "engenharia-ios", "engenharia-android"],
+    agents: ["chefe-engenharia", "engenharia-web", "engenharia-ios"],
     kpis: [
       { name: t("Ticket → PR", "Ticket → PR"), target: "< 5 d" },
       { name: t("Cobertura de testes", "Test coverage"), target: "≥ 70 %" },

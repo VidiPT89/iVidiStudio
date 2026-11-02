@@ -23,7 +23,7 @@ Identidade da empresa em `empresa/`. Planta com diagramas em `docs/planta.md`. P
 3. **Portão humano obrigatório.** Estas ações **nunca** são automáticas — o ticket vai para
    `elevador/aguarda-aprovacao/` e espera pelo Vidi:
    - enviar emails ou mensagens a clientes
-   - publicar em redes sociais ou lojas (App Store, Play Store)
+   - publicar em redes sociais ou lojas (App Store)
    - fazer merge em `main`
    - deploy em produção
    - emitir faturas

@@ -16,8 +16,7 @@ Valores "a partir de": o orçamento final depende do âmbito combinado com o cli
 | Site com reservas ou marcações | site institucional + sistema de reservas com confirmação por email | **1.800 €** | — |
 | Loja online | até 50 produtos, pagamentos online, gestão de encomendas | **2.500 €** | 2.000–8.000 € |
 | Web app à medida | MVP com login, base de dados e painel de gestão | **a partir de 5.000 €** | 8.000–30.000 € |
-| App iOS **ou** Android (nativa) | MVP numa plataforma, até 5 ecrãs principais, publicação na loja | **a partir de 4.000 €** | MVP a partir de ~15.000 € (empresas) |
-| App iOS **e** Android | as duas plataformas nativas | **a partir de 6.500 €** | — |
+| App iOS (nativa) | MVP em iOS, até 5 ecrãs principais, publicação na App Store | **a partir de 4.000 €** | MVP a partir de ~15.000 € (empresas) |
 | Salesforce | configuração, automações, desenvolvimento | **35 €/hora** (pacote de 10 h: 330 €) | — |
 | Hora avulsa | pequenas alterações e trabalho fora de âmbito | **30 €/hora** | 30–80 €/hora |
 

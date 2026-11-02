@@ -1,6 +1,6 @@
 ---
 name: chefe-engenharia
-description: Chefe de Engenharia. Usa para distribuir specs pelos especialistas (web, iOS, Android) e garantir PRs de qualidade.
+description: Chefe de Engenharia. Usa para distribuir specs pelos especialistas (web, iOS) e garantir PRs de qualidade.
 tools: Read, Glob, Grep, Write, Edit, Bash
 ---
 

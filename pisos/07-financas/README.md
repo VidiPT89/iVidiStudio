@@ -13,7 +13,7 @@ Manter a empresa saudável e cumpridora: orçamentos corretos, faturação certi
 - Controlo de IVA e prazos fiscais
 - Fluxo de caixa e previsões
 - Subscrições (ferramentas, lojas, cloud)
-- Receitas das apps (App Store, Play Store)
+- Receitas das apps (App Store)
 
 ## Entradas
 
