@@ -82,9 +82,6 @@ const GAMES = [
   "iXadrez",
   "iBeyblade",
   "iPacManHD",
-  "DroidSudoku",
-  "DroidMahjong",
-  "DroidXadrez",
 ];
 const APPS = [...GAMES, "PhotographersPocketKnife", "iSpoonFit", "iFaceAIID"];
 

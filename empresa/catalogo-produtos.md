@@ -1,7 +1,7 @@
 # Catálogo de produtos
 
 > Produtos próprios da iVidi Studio, com os nomes exatamente como estão no GitHub e nas lojas.
-> Plataformas tiradas dos repositórios (setembro de 2026). A monetização é decisão do Vidi.
+> Plataformas tiradas dos repositórios (atualizado a 2 de novembro de 2026: as versões Android foram retiradas). A monetização é decisão do Vidi.
 
 ## Jogos
 
@@ -10,14 +10,14 @@
 | iTetris | iOS | iTetris | Blocos a cair com Super Rotation System, T-spins e modos Marathon/Sprint/Ultra |
 | iPinball | iOS, macOS | iPinball | Pinball ao estilo dos anos 90: rampas, órbitas, seis missões, multibola |
 | iLemmings | iOS, macOS | iLemmings | Puzzle ao estilo Lemmings com terreno destrutível e oito habilidades |
-| iSudoku | iOS, macOS, Android, web | iSudoku, DroidSudoku, SudokuWeb | Puzzles com solução única, notas, dicas e classificação |
+| iSudoku | iOS, macOS, web | iSudoku, SudokuWeb | Puzzles com solução única, notas, dicas e classificação |
 | iSueca | iOS | iSueca | Sueca com regras oficiais e três níveis de dificuldade |
 | iSolitaire | iOS | iSolitaire | Paciência Klondike com arrastar e largar, desfazer e dicas |
-| iMahjong | iOS, macOS, Android, web | iMahjong, DroidMahjong, VidiMahjong | Mahjong Solitaire com jogos sempre resolúveis |
+| iMahjong | iOS, macOS | iMahjong (a versão web VidiMahjong está arquivada) | Mahjong Solitaire com jogos sempre resolúveis |
 | iPetanque | iOS | iPetanque | Petanca com regras oficiais e adversário com três níveis |
-| iXadrez | iOS, Android, web | iXadrez, DroidXadrez, Xadrez | Xadrez 1v1 e contra bot com quatro níveis, com tutorial |
-| iBeyblade | iOS, Android, web | iBeyblade, DroidBeyblade, WebBeyblade | Batalhas de piões com golpes especiais, 2 jogadores |
-| iPacManHD | iOS, Android | iPacManHD, DroidPacManHD | Pac-Man com labirinto neon e fantasmas com IA |
+| iXadrez | iOS, web | iXadrez, Xadrez | Xadrez 1v1 e contra bot com quatro níveis, com tutorial |
+| iBeyblade | iOS, web | iBeyblade, WebBeyblade | Batalhas de piões com golpes especiais, 2 jogadores |
+| iPacManHD | iOS, web | iPacManHD, pacmanHD | Pac-Man com labirinto neon e fantasmas com IA |
 
 ## Apps
 
